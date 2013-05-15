@@ -493,13 +493,13 @@ namespace AutoPuTTY
                     switch (childnode.Name)
                     {
                         case "Host":
-                            _host = mainform.Decrypt(childnode.InnerText);
+                            _host = formMain.Decrypt(childnode.InnerText);
                             break;
                         case "User":
-                            _user = mainform.Decrypt(childnode.InnerText);
+                            _user = formMain.Decrypt(childnode.InnerText);
                             break;
                         case "Password":
-                            _pass = mainform.Decrypt(childnode.InnerText);
+                            _pass = formMain.Decrypt(childnode.InnerText);
                             break;
                         case "Type":
                             Int32.TryParse(childnode.InnerText, out _type);
@@ -811,6 +811,67 @@ namespace AutoPuTTY
                 case "recrypt":
                     recryptpopup.RecryptComplete();
                     break;
+            }
+        }
+
+        private void bGExport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = @"Export SSH Config";
+            dialog.CheckFileExists = false;
+            if (dialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            string file = Settings.Default.cfgpath;
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(file);
+
+            XmlNodeList xmlnodes = xmldoc.GetElementsByTagName("Server");
+            using (StreamWriter output = new StreamWriter(dialog.FileName, true) )
+            {
+                foreach (XmlNode node in xmlnodes)
+                {
+                    System.Collections.Generic.Dictionary<String, String> servermap =
+                        new System.Collections.Generic.Dictionary<string, string>();
+
+                    foreach (XmlNode child in node)
+                    {
+                        servermap[child.Name] = child.InnerText;
+                    }
+
+                    if ( (!servermap.ContainsKey("Type") || servermap["Type"] == "0" 
+                                                         || servermap["Type"] == "2" 
+                                                         || servermap["Type"] == "3" )
+                        && servermap.ContainsKey("Host") )
+                    {
+                        //it's a putty connection
+                        output.WriteLine("Host " + node.Attributes["Name"].Value);
+                        String hostport = formMain.Decrypt(servermap["Host"]);
+                        String host = String.Empty;
+                        String port = String.Empty;
+                        String[] split = hostport.Split( ':' );
+                        if (split.Length > 1)
+                        {
+                            host = split[0];
+                            port = split[1];
+                        }
+                        else
+                        {
+                            host = hostport;
+                        }
+                        output.WriteLine("     Hostname " + host);
+                        if (port != String.Empty)
+                            output.WriteLine("     Port " + port);
+                        if( servermap.ContainsKey("User") )
+                            output.WriteLine("     User " + formMain.Decrypt(servermap["User"]));
+                        if( Settings.Default.puttykeyfile.Length > 0 )
+                            output.WriteLine("     IdentityFile " + Settings.Default.puttykeyfile);
+                        if( Settings.Default.puttyforward )
+                            output.WriteLine("     ForwardX11 Yes");
+                        output.WriteLine("     Compression No");
+                        output.WriteLine();
+                    }
+                }
             }
         }
     }

@@ -289,7 +289,7 @@ namespace AutoPuTTY
             newfile.Write(xmlcontent);
             newfile.Close();
         }
-
+        
         public void XmlConfigSet(string id, string val)
         {
             string file = Settings.Default.cfgpath;
@@ -1248,7 +1248,7 @@ namespace AutoPuTTY
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
-        public string Decrypt(string toDecrypt)
+        public static string Decrypt(string toDecrypt)
         {
             if (toDecrypt == "") return "";
 
