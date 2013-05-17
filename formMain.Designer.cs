@@ -34,6 +34,9 @@ namespace AutoPuTTY
             this.tbPass = new System.Windows.Forms.TextBox();
             this.liShow = new System.Windows.Forms.LinkLabel();
             this.pConfig = new System.Windows.Forms.Panel();
+            this.tbTunnel = new System.Windows.Forms.TextBox();
+            this.lTunnel = new System.Windows.Forms.Label();
+            this.lSepTunnel = new System.Windows.Forms.Label();
             this.lSep5 = new System.Windows.Forms.Label();
             this.lSep4 = new System.Windows.Forms.Label();
             this.lSep3 = new System.Windows.Forms.Label();
@@ -81,7 +84,7 @@ namespace AutoPuTTY
             this.lbList.Margin = new System.Windows.Forms.Padding(0);
             this.lbList.Name = "lbList";
             this.lbList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbList.Size = new System.Drawing.Size(131, 205);
+            this.lbList.Size = new System.Drawing.Size(131, 245);
             this.lbList.Sorted = true;
             this.lbList.TabIndex = 0;
             this.lbList.SelectedIndexChanged += new System.EventHandler(this.lbList_IndexChanged);
@@ -115,6 +118,9 @@ namespace AutoPuTTY
             // pConfig
             // 
             this.pConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pConfig.Controls.Add(this.tbTunnel);
+            this.pConfig.Controls.Add(this.lTunnel);
+            this.pConfig.Controls.Add(this.lSepTunnel);
             this.pConfig.Controls.Add(this.lSep5);
             this.pConfig.Controls.Add(this.lSep4);
             this.pConfig.Controls.Add(this.lSep3);
@@ -139,15 +145,42 @@ namespace AutoPuTTY
             this.pConfig.Location = new System.Drawing.Point(131, 0);
             this.pConfig.Margin = new System.Windows.Forms.Padding(0);
             this.pConfig.Name = "pConfig";
-            this.pConfig.Size = new System.Drawing.Size(130, 229);
+            this.pConfig.Size = new System.Drawing.Size(130, 265);
             this.pConfig.TabIndex = 1;
+            // 
+            // tbTunnel
+            // 
+            this.tbTunnel.Location = new System.Drawing.Point(3, 174);
+            this.tbTunnel.Name = "tbTunnel";
+            this.tbTunnel.Size = new System.Drawing.Size(123, 20);
+            this.tbTunnel.TabIndex = 16;
+            // 
+            // lTunnel
+            // 
+            this.lTunnel.AutoSize = true;
+            this.lTunnel.Location = new System.Drawing.Point(3, 158);
+            this.lTunnel.Name = "lTunnel";
+            this.lTunnel.Size = new System.Drawing.Size(40, 13);
+            this.lTunnel.TabIndex = 22;
+            this.lTunnel.Text = "Tunnel";
+            // 
+            // lSepTunnel
+            // 
+            this.lSepTunnel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lSepTunnel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lSepTunnel.Location = new System.Drawing.Point(0, 171);
+            this.lSepTunnel.Name = "lSepTunnel";
+            this.lSepTunnel.Size = new System.Drawing.Size(126, 2);
+            this.lSepTunnel.TabIndex = 21;
+            this.lSepTunnel.Text = "2";
             // 
             // lSep5
             // 
             this.lSep5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.lSep5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lSep5.Location = new System.Drawing.Point(2, 173);
+            this.lSep5.Location = new System.Drawing.Point(3, 194);
             this.lSep5.Name = "lSep5";
             this.lSep5.Size = new System.Drawing.Size(126, 2);
             this.lSep5.TabIndex = 15;
@@ -201,12 +234,12 @@ namespace AutoPuTTY
             // 
             this.bOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bOptions.Image = global::AutoPuTTY.Properties.Resources.iconoptions;
-            this.bOptions.Location = new System.Drawing.Point(97, 198);
+            this.bOptions.Location = new System.Drawing.Point(97, 235);
             this.bOptions.Margin = new System.Windows.Forms.Padding(0);
             this.bOptions.Name = "bOptions";
             this.bOptions.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.bOptions.Size = new System.Drawing.Size(32, 30);
-            this.bOptions.TabIndex = 20;
+            this.bOptions.TabIndex = 21;
             this.bOptions.UseCompatibleTextRendering = true;
             this.bOptions.UseVisualStyleBackColor = true;
             this.bOptions.Click += new System.EventHandler(this.bOptions_Click);
@@ -230,10 +263,10 @@ namespace AutoPuTTY
             "VNC",
             "WinSCP (SCP)",
             "WinSCP (SFTP)"});
-            this.cbType.Location = new System.Drawing.Point(2, 176);
+            this.cbType.Location = new System.Drawing.Point(2, 213);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(126, 21);
-            this.cbType.TabIndex = 16;
+            this.cbType.TabIndex = 17;
             this.cbType.SelectedIndexChanged += new System.EventHandler(this.cbType_SelectedIndexChanged);
             // 
             // tbUser
@@ -263,10 +296,10 @@ namespace AutoPuTTY
             // lType
             // 
             this.lType.AutoSize = true;
-            this.lType.Location = new System.Drawing.Point(3, 159);
+            this.lType.Location = new System.Drawing.Point(3, 196);
             this.lType.Name = "lType";
             this.lType.Size = new System.Drawing.Size(31, 13);
-            this.lType.TabIndex = 14;
+            this.lType.TabIndex = 0;
             this.lType.Text = "Type";
             // 
             // bDelete
@@ -274,12 +307,12 @@ namespace AutoPuTTY
             this.bDelete.Enabled = false;
             this.bDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bDelete.Image = global::AutoPuTTY.Properties.Resources.icondelete;
-            this.bDelete.Location = new System.Drawing.Point(65, 198);
+            this.bDelete.Location = new System.Drawing.Point(65, 235);
             this.bDelete.Margin = new System.Windows.Forms.Padding(0);
             this.bDelete.Name = "bDelete";
             this.bDelete.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.bDelete.Size = new System.Drawing.Size(32, 30);
-            this.bDelete.TabIndex = 19;
+            this.bDelete.TabIndex = 20;
             this.bDelete.UseCompatibleTextRendering = true;
             this.bDelete.UseVisualStyleBackColor = true;
             this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
@@ -289,12 +322,12 @@ namespace AutoPuTTY
             this.bAdd.Enabled = false;
             this.bAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bAdd.Image = global::AutoPuTTY.Properties.Resources.iconadd;
-            this.bAdd.Location = new System.Drawing.Point(33, 198);
+            this.bAdd.Location = new System.Drawing.Point(33, 235);
             this.bAdd.Margin = new System.Windows.Forms.Padding(0);
             this.bAdd.Name = "bAdd";
             this.bAdd.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.bAdd.Size = new System.Drawing.Size(32, 30);
-            this.bAdd.TabIndex = 18;
+            this.bAdd.TabIndex = 19;
             this.bAdd.UseCompatibleTextRendering = true;
             this.bAdd.UseVisualStyleBackColor = true;
             this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
@@ -304,12 +337,12 @@ namespace AutoPuTTY
             this.bModify.Enabled = false;
             this.bModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bModify.Image = global::AutoPuTTY.Properties.Resources.iconmodify;
-            this.bModify.Location = new System.Drawing.Point(1, 198);
+            this.bModify.Location = new System.Drawing.Point(1, 235);
             this.bModify.Margin = new System.Windows.Forms.Padding(0);
             this.bModify.Name = "bModify";
             this.bModify.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.bModify.Size = new System.Drawing.Size(32, 30);
-            this.bModify.TabIndex = 17;
+            this.bModify.TabIndex = 18;
             this.bModify.UseCompatibleTextRendering = true;
             this.bModify.UseVisualStyleBackColor = true;
             this.bModify.Click += new System.EventHandler(this.bModify_Click);
@@ -397,7 +430,7 @@ namespace AutoPuTTY
             this.tlMain.Name = "tlMain";
             this.tlMain.RowCount = 1;
             this.tlMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMain.Size = new System.Drawing.Size(261, 229);
+            this.tlMain.Size = new System.Drawing.Size(261, 269);
             this.tlMain.TabIndex = 0;
             // 
             // tlLeft
@@ -415,7 +448,7 @@ namespace AutoPuTTY
             this.tlLeft.RowCount = 2;
             this.tlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tlLeft.Size = new System.Drawing.Size(131, 229);
+            this.tlLeft.Size = new System.Drawing.Size(131, 269);
             this.tlLeft.TabIndex = 0;
             // 
             // pFind
@@ -426,7 +459,7 @@ namespace AutoPuTTY
             this.pFind.Controls.Add(this.cbCase);
             this.pFind.Controls.Add(this.bClose);
             this.pFind.Controls.Add(this.tbFilter);
-            this.pFind.Location = new System.Drawing.Point(0, 205);
+            this.pFind.Location = new System.Drawing.Point(0, 245);
             this.pFind.Margin = new System.Windows.Forms.Padding(0);
             this.pFind.Name = "pFind";
             this.pFind.Size = new System.Drawing.Size(131, 24);
@@ -470,7 +503,7 @@ namespace AutoPuTTY
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(261, 229);
+            this.ClientSize = new System.Drawing.Size(261, 269);
             this.Controls.Add(this.tlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -527,6 +560,9 @@ namespace AutoPuTTY
         private System.Windows.Forms.TextBox tbFilter;
         private System.Windows.Forms.PictureBox bClose;
         private System.Windows.Forms.CheckBox cbCase;
+        private System.Windows.Forms.TextBox tbTunnel;
+        private System.Windows.Forms.Label lTunnel;
+        private System.Windows.Forms.Label lSepTunnel;
     }
 }
 

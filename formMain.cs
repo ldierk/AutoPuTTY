@@ -426,6 +426,7 @@ namespace AutoPuTTY
             string host = "";
             string user = "";
             string pass = "";
+            string tunnel = "";
             int type = 0;
 
             string file = Settings.Default.cfgpath;
@@ -453,13 +454,17 @@ namespace AutoPuTTY
                             case "Type":
                                 Int32.TryParse(childnode.InnerText, out type);
                                 break;
+                            case "Tunnel":
+                                tunnel = childnode.InnerText;
+                                break;
+                                
                         }
                     }
                 }
                 else return new ArrayList();
             }
 
-            server.AddRange(new string[] {name, host, user, pass, type.ToString()});
+            server.AddRange(new string[] {name, host, user, pass, type.ToString(), tunnel});
             return server;
         }
 
@@ -501,6 +506,7 @@ namespace AutoPuTTY
             tbPass.Text = Decrypt((string) server[3]);
             cbType.SelectedIndex = Convert.ToInt32(server[4]);
             lUser.Text = cbType.Text == "Remote Desktop" ? "[Domain\\] username" : "Username";
+            tbTunnel.Text = Decrypt((string)server[5]);
 
             if (bAdd.Enabled) bAdd.Enabled = false;
             if (bModify.Enabled) bModify.Enabled = false;
@@ -608,6 +614,7 @@ namespace AutoPuTTY
                     string _user = Decrypt(server[2].ToString());
                     string _pass = Decrypt(server[3].ToString());
                     string _type = type == "-1" ? cbType.Items[Convert.ToInt16(server[4])].ToString() : type;
+                    string _tunnel = Decrypt(server[5].ToString());
                     string[] f = {"\\", "/", ":", "*", "?", "\"", "<", ">", "|"};
                     string[] ps = {"/", "\\\\"};
                     string[] pr = {"\\", "\\"};
@@ -850,6 +857,8 @@ namespace AutoPuTTY
                                 if (host != "") myProc.StartInfo.Arguments += host;
                                 if (port != "") myProc.StartInfo.Arguments += " " + port;
                                 if (_user != "" && _pass != "") myProc.StartInfo.Arguments += " -pw \"" + _pass + "\"";
+                                if (_tunnel != "") myProc.StartInfo.Arguments += " -L " + _tunnel;
+
                                 if (Settings.Default.puttyexecute && Settings.Default.puttycommand != "") myProc.StartInfo.Arguments += " -m \"" + Settings.Default.puttycommand + "\"";
                                 if (Settings.Default.puttykey && Settings.Default.puttykeyfile != "") myProc.StartInfo.Arguments += " -i \"" + Settings.Default.puttykeyfile + "\"";
                                 if (Settings.Default.puttyforward) myProc.StartInfo.Arguments += " -X";
@@ -1008,6 +1017,13 @@ namespace AutoPuTTY
                 newserver.AppendChild(type);
             }
 
+            if (tbTunnel.Text != "")
+            {
+                XmlElement tunnel = xmldoc.CreateElement("Tunnel");
+                tunnel.InnerText = Encrypt(tbTunnel.Text);
+                newserver.AppendChild(tunnel);
+            }
+
             XmlNodeList xmlnode = xmldoc.SelectNodes("//*[@Name=" + ParseXpathString(lbList.SelectedItem.ToString()) + "]");
             if (xmldoc.DocumentElement != null)
             {
@@ -1073,6 +1089,13 @@ namespace AutoPuTTY
                     XmlElement type = xmldoc.CreateElement("Type");
                     type.InnerText = cbType.SelectedIndex.ToString();
                     newserver.AppendChild(type);
+                }
+
+                if (tbTunnel.Text != "")
+                {
+                    XmlElement tunnel = xmldoc.CreateElement("Tunnel");
+                    tunnel.InnerText = Encrypt(tbTunnel.Text);
+                    newserver.AppendChild(tunnel);
                 }
 
                 if (xmldoc.DocumentElement != null) xmldoc.DocumentElement.InsertAfter(newserver, xmldoc.DocumentElement.LastChild);
@@ -1369,5 +1392,6 @@ namespace AutoPuTTY
         private delegate bool InvokeDelegate();
 
         #endregion
+
     }
 }
