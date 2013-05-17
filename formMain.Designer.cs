@@ -34,10 +34,8 @@ namespace AutoPuTTY
             this.tbPass = new System.Windows.Forms.TextBox();
             this.liShow = new System.Windows.Forms.LinkLabel();
             this.pConfig = new System.Windows.Forms.Panel();
-            this.tbTunnel = new System.Windows.Forms.TextBox();
             this.lTunnel = new System.Windows.Forms.Label();
             this.lSepTunnel = new System.Windows.Forms.Label();
-            this.lSep5 = new System.Windows.Forms.Label();
             this.lSep4 = new System.Windows.Forms.Label();
             this.lSep3 = new System.Windows.Forms.Label();
             this.lSep2 = new System.Windows.Forms.Label();
@@ -67,6 +65,7 @@ namespace AutoPuTTY
             this.cbCase = new System.Windows.Forms.CheckBox();
             this.bClose = new System.Windows.Forms.PictureBox();
             this.tbFilter = new System.Windows.Forms.TextBox();
+            this.tbTunnel = new System.Windows.Forms.TextBox();
             this.pConfig.SuspendLayout();
             this.tlMain.SuspendLayout();
             this.tlLeft.SuspendLayout();
@@ -121,7 +120,6 @@ namespace AutoPuTTY
             this.pConfig.Controls.Add(this.tbTunnel);
             this.pConfig.Controls.Add(this.lTunnel);
             this.pConfig.Controls.Add(this.lSepTunnel);
-            this.pConfig.Controls.Add(this.lSep5);
             this.pConfig.Controls.Add(this.lSep4);
             this.pConfig.Controls.Add(this.lSep3);
             this.pConfig.Controls.Add(this.lSep2);
@@ -148,13 +146,6 @@ namespace AutoPuTTY
             this.pConfig.Size = new System.Drawing.Size(130, 265);
             this.pConfig.TabIndex = 1;
             // 
-            // tbTunnel
-            // 
-            this.tbTunnel.Location = new System.Drawing.Point(3, 174);
-            this.tbTunnel.Name = "tbTunnel";
-            this.tbTunnel.Size = new System.Drawing.Size(123, 20);
-            this.tbTunnel.TabIndex = 16;
-            // 
             // lTunnel
             // 
             this.lTunnel.AutoSize = true;
@@ -174,17 +165,6 @@ namespace AutoPuTTY
             this.lSepTunnel.Size = new System.Drawing.Size(126, 2);
             this.lSepTunnel.TabIndex = 21;
             this.lSepTunnel.Text = "2";
-            // 
-            // lSep5
-            // 
-            this.lSep5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lSep5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lSep5.Location = new System.Drawing.Point(3, 194);
-            this.lSep5.Name = "lSep5";
-            this.lSep5.Size = new System.Drawing.Size(126, 2);
-            this.lSep5.TabIndex = 15;
-            this.lSep5.Text = "2";
             // 
             // lSep4
             // 
@@ -498,6 +478,14 @@ namespace AutoPuTTY
             this.tbFilter.TabIndex = 4;
             this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_Changed);
             // 
+            // tbTunnel
+            // 
+            this.tbTunnel.Location = new System.Drawing.Point(3, 174);
+            this.tbTunnel.Name = "tbTunnel";
+            this.tbTunnel.Size = new System.Drawing.Size(123, 20);
+            this.tbTunnel.TabIndex = 16;
+            this.tbTunnel.TextChanged += new System.EventHandler(this.tbTunnel_TextChanged);
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -549,7 +537,6 @@ namespace AutoPuTTY
         private System.Windows.Forms.ContextMenu cmList;
         private System.Windows.Forms.Label lHost;
         private System.Windows.Forms.Button bOptions;
-        private System.Windows.Forms.Label lSep5;
         private System.Windows.Forms.Label lSep4;
         private System.Windows.Forms.Label lSep3;
         private System.Windows.Forms.Label lSep2;
@@ -560,9 +547,9 @@ namespace AutoPuTTY
         private System.Windows.Forms.TextBox tbFilter;
         private System.Windows.Forms.PictureBox bClose;
         private System.Windows.Forms.CheckBox cbCase;
-        private System.Windows.Forms.TextBox tbTunnel;
         private System.Windows.Forms.Label lTunnel;
         private System.Windows.Forms.Label lSepTunnel;
+        private System.Windows.Forms.TextBox tbTunnel;
     }
 }
 

@@ -1393,5 +1393,10 @@ namespace AutoPuTTY
 
         #endregion
 
+        private void tbTunnel_TextChanged(object sender, EventArgs e)
+        {
+            tbHost_TextChanged(sender, e);
+        }
+
     }
 }
